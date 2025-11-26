@@ -1,0 +1,12 @@
+[tool.poetry]
+name = "chat-project"
+version = "1.0.0"
+description = "A simple chat app built with FastAPI"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.104.1"
+uvicorn = "^0.18.2"
+
+[tool.poetry.dev-dependencies]
