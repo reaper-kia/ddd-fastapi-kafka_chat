@@ -3,10 +3,13 @@ name = "chat-project"
 version = "1.0.0"
 description = "A simple chat app built with FastAPI"
 authors = ["Your Name <your.email@example.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 fastapi = "^0.104.1"
 uvicorn = "^0.18.2"
+pytest = "^9.0.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.1"

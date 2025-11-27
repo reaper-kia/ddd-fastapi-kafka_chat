@@ -9,4 +9,10 @@ class TextToLongException(ApplicationException):
    @property
    def message(self):
       return f"Error: very long text message {self.text[:255]}"
+
+@dataclass(frozen=True)
+class EmptyTextException(ApplicationException):
    
+   @property
+   def message(self):
+      return "The message cannot be empty."
