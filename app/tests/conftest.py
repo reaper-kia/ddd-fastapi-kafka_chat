@@ -1,0 +1,15 @@
+from pytest import fixture
+
+from app.infra.repositories.messages import BaseChatRepository, MemoryChatRepository
+from app.logic.init import init_mediator
+from app.logic.mediator import Mediator
+
+@fixture(scope='function')
+def chat_repository() -> MemoryChatRepository:
+   return MemoryChatRepository()
+
+@fixture(scope='function')
+def mediator(chat_repository: MemoryChatRepository) -> Mediator:
+    mediator = Mediator()
+    init_mediator(mediator=mediator, chat_repository=chat_repository)  # передаем тот же объект
+    return mediator
