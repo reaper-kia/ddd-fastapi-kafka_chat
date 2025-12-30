@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 
-def create_app():
+from app.application.api.messages.handlers import router as chat_router
+
+def create_app() -> FastAPI:
    app = FastAPI(
       title="Kafka chat",
       docs_url="/api/docs",
       description="simple kafka",
       debug=True,
    )
+   app.include_router(chat_router, prefix='/chat')
    return app
 
-app = create_app()
