@@ -4,8 +4,8 @@ EXEC = docker exec -it
 LOGS = docker logs
 ENV = --env-file .env
 APP_FILE = docker-compose.yml
+STORAGES_FILE = storages.yml
 APP_CONTAINER = main-app-new
-STORAGES_FILE = docker-compose/storages.yaml
 
 # Задачи для сборки и запуска контейнеров
 
@@ -13,9 +13,22 @@ STORAGES_FILE = docker-compose/storages.yaml
 app:
 	$(DC) -f $(APP_FILE) $(ENV) up --build -d
 
+.PHONY: storages
+storages:
+	$(DC) -f $(STORAGES_FILE) $(ENV) up --build -d
+
+.PHONY: all
+all:
+	$(DC) -f $(STORAGES_FILE) -f $(APP_FILE) $(ENV) up --build -d
+
+
 .PHONY: app-down
 app-down:
 	$(DC) -f $(APP_FILE) down
+
+.PHONY: storages-down
+storages-down:
+	$(DC) -f $(STORAGES_FILE) down
 
 .PHONY: app-shell
 app-shell:

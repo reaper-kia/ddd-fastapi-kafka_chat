@@ -2,11 +2,12 @@ import pytest
 
 from faker import Faker
 
+from app.infra.repositories.messages.base import BaseChatRepository
 from app.logic.exception.messages import ChatWithThatTitleAlreadyExistsException
 from app.domain.exception.messages import TextToLongException
 from app.domain.values.messages import Title
 from app.domain.entities.messages import Chat
-from app.infra.repositories.messages import BaseChatRepository
+
 from app.logic.commands.messages import CreateChatCommand
 from app.logic.mediator import Mediator
 
@@ -16,7 +17,7 @@ async def test_create_chat_commands_success(
     mediator : Mediator,
     faker : Faker
 ):
-    #TODO закинуть фейкер
+    
     chat: Chat
     chat, *_ = await mediator.handler_commands(CreateChatCommand(title=faker.text(max_nb_chars=100)))
     

@@ -35,14 +35,19 @@ class Mediator:
     ):
         self.commands_map[command].extend(command_handlers)
 
-    async def handler_event(self, event: BaseEvent) -> Iterable[ER]:
-        event_type = event.__class__
+    async def publish(self, events: Iterable[BaseEvent]) -> Iterable[ER]:
+        event_type = events.__class__
         handlers = self.events_map.get(event_type)
 
         if not handlers:
             raise EventHandlersNotRegisteredException(event_type)
 
-        return [await handler.handle(event) for handler in handlers]
+        result = []
+        
+        for event in events:
+            result.extend([await handler.handle(event) for handler in handlers]) #extend -  встроенный метод объекта list, который позволяет добавить все элементы из итерируемого объекта
+        
+        return result
 
     async def handler_commands(self, command: BaseCommand) -> Iterable[CR]:
         command_type = command.__class__

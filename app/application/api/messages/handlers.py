@@ -5,7 +5,7 @@ from fastapi.routing import APIRouter
 from app.logic.init import init_container
 from app.application.api.schemas import ErrorSchemas
 from app.domain.exception.base import ApplicationException
-from app.application.api.messages.shemas import CreateChatRequestSchemas, CreateChatResponseSchemas
+from app.application.api.messages.schemas import CreateChatRequestSchemas, CreateChatResponseSchemas
 from app.logic.commands.messages import CreateChatCommand
 from app.logic.mediator import Mediator
 
